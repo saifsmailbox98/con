@@ -1,9 +1,18 @@
 var http = require("http");
+var path = require("path");
 var express = require("express");
 var logger = require("morgan");
 
+
 var app = express();
 
+
+
+app.set("views", path.resolve(__dirname, "views"));
+
+
+
+app.set("view engine", "ejs");
 
 
 app.use(logger("dev"));
@@ -14,7 +23,7 @@ app.use(function(request, response, next) {
 });
 
 app.get("/", function(request, response){
-    response.send("Link expired!");               
+        response.render("home");             
 });
 
 
@@ -23,7 +32,7 @@ app.use(function(request, response){
 });
 
 
-http.createServer(app).listen(3000, function(){
+http.createServer(app).listen(80, function(){
     console.log("Started on port 8080.");
 });
 
